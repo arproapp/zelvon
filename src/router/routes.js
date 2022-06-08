@@ -5,7 +5,8 @@ export default [
     path: "/login",
     name: "login",
     component: () => import("../views/account/login.vue"),
-    meta:  { title: "Login",
+    meta: {
+      title: "Login",
       beforeResolve(routeTo, routeFrom, next) {
         // If the user is already logged in
         if (store.getters["auth/loggedIn"]) {
@@ -22,7 +23,8 @@ export default [
     path: "/register",
     name: "Register",
     component: () => import("../views/account/register.vue"),
-    meta: { title: "Register",
+    meta: {
+      title: "Register",
       beforeResolve(routeTo, routeFrom, next) {
         // If the user is already logged in
         if (store.getters["auth/loggedIn"]) {
@@ -39,7 +41,8 @@ export default [
     path: "/forgot-password",
     name: "Forgot password",
     component: () => import("../views/account/forgot-password.vue"),
-    meta: { title: "Forgot Password",
+    meta: {
+      title: "Forgot Password",
       beforeResolve(routeTo, routeFrom, next) {
         // If the user is already logged in
         if (store.getters["auth/loggedIn"]) {
@@ -217,6 +220,12 @@ export default [
     name: "products",
     meta: { title: "Products", authRequired: true },
     component: () => import("../views/apps/ecommerce/products"),
+  },
+  {
+    path: "/ecommerce/products/editar/:id",
+    name: "products-editar",
+    meta: { title: "Products Editar", authRequired: true },
+    component: () => import("../components/EditarTarea"),
   },
   {
     path: "/ecommerce/product-details",
@@ -698,7 +707,7 @@ export default [
     },
     component: () => import('../views/charts/apex/column/index')
   },
- 
+
   {
     path: '/charts/apex-mixed',
     name: 'mixed-chart',

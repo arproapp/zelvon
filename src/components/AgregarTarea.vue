@@ -1,9 +1,11 @@
 <script>
 import { mapActions } from "vuex";
+const shortid = require("shortid");
 export default {
   data() {
     return {
       tarea: {
+        id: "",
         firstname: "",
         lastname: "",
         company: "",
@@ -16,12 +18,22 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['setTareas']),
-
+    ...mapActions("invoice", ["setTareas"]),
     procesarFormulario() {
+      this.tarea.id = shortid.generate();
       console.log(this.tarea);
-
       this.setTareas(this.tarea);
+      this.tarea = {
+        id: "",
+        firstname: "",
+        lastname: "",
+        company: "",
+        phone: "",
+        email: "",
+        address: "",
+        city: "",
+        state: "",
+      };
     },
   },
 };
@@ -98,7 +110,9 @@ export default {
       <!--end col-->
       <div class="col-12">
         <div class="mb-3">
-          <label for="address1ControlTextarea" class="form-label">Address</label>
+          <label for="address1ControlTextarea" class="form-label"
+            >Address</label
+          >
           <input
             type="text"
             class="form-control"
@@ -125,7 +139,11 @@ export default {
       <div class="col-6">
         <div class="mb-3">
           <label for="ForminputState" class="form-label">State</label>
-          <select id="ForminputState" class="form-select" v-model.trim="tarea.state">
+          <select
+            id="ForminputState"
+            class="form-select"
+            v-model.trim="tarea.state"
+          >
             <option selected>Choose...</option>
             <option>Coahuila</option>
             <option>Nuevo Leon</option>
